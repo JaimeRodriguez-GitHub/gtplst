@@ -1,0 +1,123 @@
+<?php //$page="login"; require_once("header.php");?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta charset="UTF-8">
+    <title>Pedidos Guateplast</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link href="css/bootstrap-formhelpers.min.css" rel="stylesheet">
+    <link href="css/datepicker.css" rel="stylesheet">
+    <link href="css/templatemo_style.css" rel="stylesheet">    
+    <link href="css/menu-style.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/sweetalert.css">
+    <link href="css/login-styles.css" rel="stylesheet" />    
+
+
+
+    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui.js"></script>  
+    <script src="js/jquery.blockUI.js"></script>  
+    <script src="js/jquery.number.min.js"></script>  
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/funciones.js"></script>
+    <script src="js/validator.js"></script>
+    <script src="js/sweetalert-dev.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+  <div class="col-sm-8 col-sm-offset-2">
+
+
+    <div class="card card-container">
+      <img id="profile-img" class="profile-img-card" src="images/LogoGuatePlast.jpg" />
+      <p id="profile-name" class="profile-name-card">Reiniciar Contrase&ntilde;a</p>
+
+      <div id="form-olvidado">
+        <form accept-charset="UTF-8" role="form" id="resetpwd-form" method="post" action="lib/resetpwd.php">
+          <fieldset>
+            <div class="form-group input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+              <input class="form-control" placeholder="Ingresa tu nueva contraseña" id="password" name="password" type="password" value="" required="" autofocus="">
+            </div>
+            <div class="form-group input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+              <input class="form-control" placeholder="Confirma tu contraseña" id="password2" name="password2" type="password" value="" required="">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block">Aceptar</button>
+            </div>
+            <div style="display: none;" id="alert_fail"> 
+              <br>
+              <div class="text-justify alert alert-danger" id="alert_fail_text">
+                Este Token no es correcto, su contraseña no pudo restablecerse. Realice el proceso de reinicio de contraseña nuevamente.
+              </div>
+            </div>
+            <input type="hidden" id="t" name="t"></input>
+          </fieldset>
+        </form>
+      </div> 
+      
+    </div><!-- /card-container  -->
+  </div> <!-- columnas -->
+</div> <!-- container -->
+
+<script type="text/javascript">
+
+$(window).load(function(){
+  $('#resetpwd-form').validate({      
+      rules: {
+          password: {
+              minlength: 3,
+              maxlength: 50,
+              required: true
+          },
+          password2: {
+              minlength: 3,
+              maxlength: 50,
+              required: true,
+              equalTo: "#password"
+          }
+      },
+      highlight: function (element) {
+          $(element).closest('.form-group').addClass('has-error');
+      },
+      unhighlight: function (element) {
+          $(element).closest('.form-group').removeClass('has-error');
+      },
+      errorElement: 'span',
+      errorClass: 'help-block',
+      errorPlacement: function (error, element) {
+          if (element.parent('.input-group').length) {
+              error.insertAfter(element.parent());
+          } else {
+              error.insertAfter(element);
+          }
+      }
+  });  
+});
+
+$( document ).ready(function() {
+  var t = getUrlParameter('t');
+  document.getElementById('t').value=t;
+  var attempt = getUrlParameter('attempt');
+  if (attempt=='failed'){
+     $("#alert_fail").hide(); 
+     $("#alert_fail").fadeIn(1000); 
+  }     
+});
+
+</script>
+
+</body>
+</html>
