@@ -1,0 +1,34 @@
+.menu-selected {
+    color: #ffffff !important;
+	background-color: #72b842 !important;
+}
+.menu-selected:hover {
+    color: #ffffff !important;
+	background-color: #72b842 !important;
+}
+.menu-selected:focus {
+    color: #ffffff !important;
+	background-color: #72b842 !important;
+}
+.heading-info {
+	color: #df0631  !important;
+	text-align: right;
+	font-size: 11px;
+	padding: 0 0 0 20px;
+	margin-top: 20px;
+}
+.menu-logo {
+    width: 50px;
+    margin-top: -15px;
+}
+.menu-navbar {
+	background-color: #c5eb79;
+	border-color: #8cd200;
+	margin-bottom: 0px !important;
+}
+.menu-toggle-button {
+	border-color: #8cd200 !important;	
+}
+.menu-toggle-button:hover {
+   background-color: #8cd200 !important;
+}
